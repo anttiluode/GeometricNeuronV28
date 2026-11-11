@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1117">
+<title>Geometric Neuron V28 · A clock reads a memory</title>
+<meta name="description" content="Eight original Geometric Neuron relays remember a beat pattern. A native 59-tick clock and one more relay read its two-tick windows without an externally timed query.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="shell">
+<nav class="nav"><a class="mark" href="./"><span class="symbol">∿</span><span>GEOMETRIC NEURON <b>/ V28</b></span></a><div class="navlinks"><a href="https://github.com/anttiluode/GeometricNeuronV27">V27</a><a href="https://github.com/anttiluode/GeometricNeuronV28/blob/main/results/v28_clock_reader.json">Evidence</a><a href="https://github.com/anttiluode/GeometricNeuronV28">Source ↗</a></div></nav>
+<header class="hero">
+  <div class="eyebrow"><span class="pulse"></span> THE NOVEMBER 11 EXPERIMENT <span class="line"></span> THE NATIVE READER</div>
+  <h1>First, the machine remembered.<br><em>Now another machine can ask.</em></h1>
+  <p>Eight unmodified Perception Lab relays circulate a 32-tick memory. A ninth relay listens for the coincidence of a memory event and a tenth unit's <strong>autonomous 59-tick clock</strong>. Its own beat is the answer. No scripted read trigger.</p>
+</header>
+<div class="kpis" aria-label="Published reference measurements">
+  <div><small>REFERENCE READS</small><strong>1,917 <span>/ 1,917</span></strong><p>27 stable patterns, source-reported</p></div>
+  <div><small>CLOCK VS MEMORY</small><strong>59 <span>: 32</span></strong><p>Every ring phase visited in 32 clock cycles</p></div>
+  <div><small>EXTRA READER UNITS</small><strong>01 <span>+ clock</span></strong><p>No special neuron, no new equation</p></div>
+</div>
+<main class="lab">
+  <section class="left">
+    <div class="section-heading"><span class="kicker">01 / THE CIRCUIT</span><span class="micro">10 ORIGINAL LOOPS · HAND-WIRED</span></div>
+    <canvas id="network" role="img" aria-label="Eight relay ring, a silent reader, and a separate autonomous clock, connected by two wires"></canvas>
+    <div class="legend"><span><i class="dot orange"></i>Circulating ring</span><span><i class="dot blue"></i>Autonomous clock</span><span><i class="dot green"></i>Silent reader</span><span><i class="dot white"></i>Current query</span></div>
+    <div class="data-rail">
+      <div class="section-heading"><span class="kicker">02 / WRITE THE 32-SLOT MEMORY</span><span class="micro">CLICK TO TOGGLE</span></div>
+      <div id="pattern" class="pattern" role="group" aria-label="Toggle 32 memory bits"></div>
+      <div class="buttons">
+        <button id="random">Mixed pattern</button><button id="single">One beat</button><button id="empty">Silence</button><button id="dense">All ones <span class="bad">*</span></button>
+      </div>
+      <div class="runline"><button class="primary" id="run">▶ RUN THE NATIVE CLOCK SCAN</button><span class="smallprint">V27 ring weights −6 · read wires −2 and −4</span></div>
+    </div>
+    <div class="data-rail">
+      <div class="section-heading"><span class="kicker">03 / LISTEN TO THE SIGNALS</span><span class="micro">EVERY PULSE IS FROM THE REAL SIMULATOR</span></div>
+      <canvas id="trace" role="img" aria-label="Time series of ring, clock, and reader beats around the selected query"></canvas>
+      <div class="trace-labels"><span><i class="dot orange"></i> RING INPUT</span><span><i class="dot blue"></i> 59-TICK CLOCK</span><span><i class="dot green"></i> READER BEAT</span></div>
+    </div>
+  </section>
+  <aside class="right">
+    <div class="section-heading"><span class="kicker">04 / CLOCK'S VIEW</span><span class="micro" id="scanCounter">QUERY —</span></div>
+    <div class="current">
+      <div class="eyebrow">THE CLOCK ASKS AT TICK <span id="tick">—</span></div>
+      <div class="readout" id="answer">—</div>
+      <div class="answer-label" id="answerText">Run the experiment to see what the reader says.</div>
+      <p>One clock beat lasts <strong>two ticks</strong>. The reader answers whether either of those two ring slots contains a beat. It does <em>not</em> identify which of the two.</p>
+    </div>
+    <div class="progress-title"><span>THE PHASES THIS CLOCK CAN VISIT</span><span id="coverage">0 / 32</span></div>
+    <div id="phases" class="phases" aria-label="Thirty-two phases scanned by the autonomous clock"></div>
+    <div class="mini-controls"><button id="prev" aria-label="Previous clock query">‹</button><button id="play">Ⅱ Pause playback</button><button id="next" aria-label="Next clock query">›</button></div>
+    <div class="results">
+      <div class="section-heading"><span class="kicker">05 / ACTUAL EXPERIMENT RESULTS</span></div>
+      <div class="result"><span>Clock-window answers</span><b id="accuracy">—</b></div>
+      <div class="result"><span>Positive answers</span><b id="positive">—</b></div>
+      <div class="result"><span>Unclocked reader beats</span><b id="unsolicited">—</b></div>
+      <div class="result"><span>Ring memory after reading</span><b id="stable">—</b></div>
+      <div class="result"><span>Without clock wire</span><b id="withoutClock">—</b></div>
+      <div class="result"><span>Without ring wire</span><b id="withoutRing">—</b></div>
+    </div>
+    <div class="manual">
+      <div class="section-heading"><span class="kicker">06 / OPERATOR-TIMED EXPERIMENT</span></div>
+      <p>Pick one memory slot above. This <em>separate</em> experiment gives the reader a one-tick query on its original setpoint port; it is externally timed, not the autonomous clock.</p>
+      <button id="probe" class="probe">PROBE SELECTED SLOT → <b id="slot">07</b></button>
+      <div id="probeResult" class="probe-result" role="status">Individual reads have finer timing but are less reliable.</div>
+    </div>
+    <p class="caution">* All-ones fails even in V27: a 50-tick constant input loses variance. This is a deliberately preserved failure, not a bug in the page.</p>
+  </aside>
+</main>
+<section class="notes">
+  <div><span class="kicker">WHAT CHANGED?</span><h2>V27 stored.<br>V28 reads.</h2><p>There is no label encoded into the reader. Two subthreshold native inputs meet at its existing <code>setpoint_mod</code> port. The original nonlinear loop makes a beat four or five ticks after their coincidence.</p></div>
+  <div><span class="kicker">WHAT DID NOT CHANGE?</span><h2>Still an experiment.<br>Not a learning neuron.</h2><p>The ring and the two read weights are hand-selected. Clock phases are labeled by the external measuring instrument. There is no adaptive routing, no noisy-world demonstration, and no associative retrieval. One-way wiring makes the read non-destructive by construction.</p></div>
+  <div><span class="kicker">THE ANCESTORS</span><h2>Old ideas, one real test.</h2><p>V24's addressable reading, V9's direction-sensitive phase interpretation, and V26's native setpoint excitation suggested this experiment. Only the actual V27 core was carried into V28; the other architectures are not silently claimed as implemented.</p></div>
+</section>
+<footer><span>GEOMETRIC NEURON V28 · SOURCE-REPORTED REPRODUCIBLE EXPERIMENT · 2026</span><span><a href="README.md">Read the ledger</a> · <a href="results/v28_clock_reader.json">Raw measurements</a></span></footer>
+</div>
+<script src="taps.js"></script><script src="v27.js"></script><script src="v28_reader.js"></script><script src="site.js"></script>
+</body></html>
