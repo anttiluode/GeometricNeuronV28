@@ -1,0 +1,21 @@
+name: Verify V28 native reader
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: JavaScript syntax
+        run: |
+          node --check v27.js
+          node --check v28_reader.js
+          node --check site.js
+      - name: V27 original parity fixtures
+        run: node tests/js_parity.cjs
+      - name: Native reader, ablation and failure controls
+        run: node tests/test_reader.cjs
