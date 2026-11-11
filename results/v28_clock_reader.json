@@ -1,0 +1,793 @@
+{
+  "protocol": "Native nine? No: 10 original loop units, eight ring relays, one reader relay, one autonomous 59-tick clock.",
+  "method": "Same unchanged V27 core; ring 8 units c=1.6 edges w=-6 L=0; reader c=1.6 with ring->reader w=-2 and clock->reader w=-4; clock c=1.0; no external query during observation.",
+  "observation": "From tick 180 to <4400 of a 4500-tick run after 1500-tick settlement, each leading edge of a two-tick clock event predicts whether ring unit zero beats in either of those two ticks; reader observed at +4 or +5 ticks.",
+  "patterns": "One empty, six single-bit, twenty PRNG-generated ~32%-occupied 32-bit sequences, deterministic xorshift32 initial 2463534242.",
+  "summary": {
+    "patterns": 27,
+    "queries": 1917,
+    "correct": 1917,
+    "positive": 819,
+    "false_positives": 0,
+    "false_negatives": 0,
+    "unsolicited": 0,
+    "ring_unchanged": 27
+  },
+  "ablations": {
+    "original": {
+      "correct": 71,
+      "total": 71,
+      "positive_outputs": 35
+    },
+    "without_ring_to_reader": {
+      "correct": 36,
+      "total": 71,
+      "positive_outputs": 0
+    },
+    "without_clock_to_reader": {
+      "correct": 36,
+      "total": 71,
+      "positive_outputs": 0
+    }
+  },
+  "negatives": {
+    "all_ones": {
+      "correct": 55,
+      "total": 71,
+      "stable": false
+    },
+    "single_slot_independent_stress": {
+      "correct": 190,
+      "total": 192,
+      "misses": [
+        [
+          1,
+          13,
+          1,
+          0
+        ],
+        [
+          1,
+          14,
+          0,
+          1
+        ]
+      ]
+    }
+  },
+  "caveats": [
+    "The read is a two-tick OR, not independently addressable single-bit retrieval.",
+    "External observer labels clock phases relative to the original write time.",
+    "The two read wires and ring weights are hand-selected. No learning.",
+    "No feedback wire from reader to ring, so non-disturbance follows from one-way topology, not an unexpected protection mechanism.",
+    "Exhaustive pattern capacity and noise robustness not established.",
+    "The zero-size checkerboard hole and all-ones failure remain."
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "bits": "00000000000000000000000000000000",
+      "queries": 71,
+      "correct": 71,
+      "positives": 0,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 1,
+      "bits": "10000000000000000000000000000000",
+      "queries": 71,
+      "correct": 71,
+      "positives": 4,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 2,
+      "bits": "01000000000000000000000000000000",
+      "queries": 71,
+      "correct": 71,
+      "positives": 5,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 3,
+      "bits": "00000001000000000000000000000000",
+      "queries": 71,
+      "correct": 71,
+      "positives": 5,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 4,
+      "bits": "00000000000000010000000000000000",
+      "queries": 71,
+      "correct": 71,
+      "positives": 4,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 5,
+      "bits": "00000000000000000000000100000000",
+      "queries": 71,
+      "correct": 71,
+      "positives": 4,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 6,
+      "bits": "00000000000000000000000000000001",
+      "queries": 71,
+      "correct": 71,
+      "positives": 4,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 7,
+      "bits": "10000111101000000000001101001000",
+      "queries": 71,
+      "correct": 71,
+      "positives": 35,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 8,
+      "bits": "11011000110001001010010100101110",
+      "queries": 71,
+      "correct": 71,
+      "positives": 55,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 9,
+      "bits": "01100000010010010001100000001110",
+      "queries": 71,
+      "correct": 71,
+      "positives": 35,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 10,
+      "bits": "01000000110110001000001100100000",
+      "queries": 71,
+      "correct": 71,
+      "positives": 35,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true,
+      "readouts": [
+        [
+          222,
+          26,
+          1,
+          1
+        ],
+        [
+          281,
+          21,
+          1,
+          1
+        ],
+        [
+          340,
+          16,
+          1,
+          1
+        ],
+        [
+          399,
+          11,
+          1,
+          1
+        ],
+        [
+          458,
+          6,
+          0,
+          0
+        ],
+        [
+          517,
+          1,
+          1,
+          1
+        ],
+        [
+          576,
+          28,
+          0,
+          0
+        ],
+        [
+          635,
+          23,
+          1,
+          1
+        ],
+        [
+          694,
+          18,
+          0,
+          0
+        ],
+        [
+          753,
+          13,
+          0,
+          0
+        ],
+        [
+          812,
+          8,
+          1,
+          1
+        ],
+        [
+          871,
+          3,
+          0,
+          0
+        ],
+        [
+          930,
+          30,
+          0,
+          0
+        ],
+        [
+          989,
+          25,
+          1,
+          1
+        ],
+        [
+          1048,
+          20,
+          0,
+          0
+        ],
+        [
+          1107,
+          15,
+          1,
+          1
+        ],
+        [
+          1166,
+          10,
+          1,
+          1
+        ],
+        [
+          1225,
+          5,
+          0,
+          0
+        ],
+        [
+          1284,
+          0,
+          1,
+          1
+        ],
+        [
+          1343,
+          27,
+          0,
+          0
+        ],
+        [
+          1402,
+          22,
+          1,
+          1
+        ],
+        [
+          1461,
+          17,
+          0,
+          0
+        ],
+        [
+          1520,
+          12,
+          1,
+          1
+        ],
+        [
+          1579,
+          7,
+          1,
+          1
+        ],
+        [
+          1638,
+          2,
+          0,
+          0
+        ],
+        [
+          1697,
+          29,
+          0,
+          0
+        ],
+        [
+          1756,
+          24,
+          0,
+          0
+        ],
+        [
+          1815,
+          19,
+          0,
+          0
+        ],
+        [
+          1874,
+          14,
+          0,
+          0
+        ],
+        [
+          1933,
+          9,
+          1,
+          1
+        ],
+        [
+          1992,
+          4,
+          0,
+          0
+        ],
+        [
+          2051,
+          31,
+          0,
+          0
+        ],
+        [
+          2110,
+          26,
+          1,
+          1
+        ],
+        [
+          2169,
+          21,
+          1,
+          1
+        ],
+        [
+          2228,
+          16,
+          1,
+          1
+        ],
+        [
+          2287,
+          11,
+          1,
+          1
+        ],
+        [
+          2346,
+          6,
+          0,
+          0
+        ],
+        [
+          2405,
+          1,
+          1,
+          1
+        ],
+        [
+          2464,
+          28,
+          0,
+          0
+        ],
+        [
+          2523,
+          23,
+          1,
+          1
+        ],
+        [
+          2582,
+          18,
+          0,
+          0
+        ],
+        [
+          2641,
+          13,
+          0,
+          0
+        ],
+        [
+          2700,
+          8,
+          1,
+          1
+        ],
+        [
+          2759,
+          3,
+          0,
+          0
+        ],
+        [
+          2818,
+          30,
+          0,
+          0
+        ],
+        [
+          2877,
+          25,
+          1,
+          1
+        ],
+        [
+          2936,
+          20,
+          0,
+          0
+        ],
+        [
+          2995,
+          15,
+          1,
+          1
+        ],
+        [
+          3054,
+          10,
+          1,
+          1
+        ],
+        [
+          3113,
+          5,
+          0,
+          0
+        ],
+        [
+          3172,
+          0,
+          1,
+          1
+        ],
+        [
+          3231,
+          27,
+          0,
+          0
+        ],
+        [
+          3290,
+          22,
+          1,
+          1
+        ],
+        [
+          3349,
+          17,
+          0,
+          0
+        ],
+        [
+          3408,
+          12,
+          1,
+          1
+        ],
+        [
+          3467,
+          7,
+          1,
+          1
+        ],
+        [
+          3526,
+          2,
+          0,
+          0
+        ],
+        [
+          3585,
+          29,
+          0,
+          0
+        ],
+        [
+          3644,
+          24,
+          0,
+          0
+        ],
+        [
+          3703,
+          19,
+          0,
+          0
+        ],
+        [
+          3762,
+          14,
+          0,
+          0
+        ],
+        [
+          3821,
+          9,
+          1,
+          1
+        ],
+        [
+          3880,
+          4,
+          0,
+          0
+        ],
+        [
+          3939,
+          31,
+          0,
+          0
+        ],
+        [
+          3998,
+          26,
+          1,
+          1
+        ],
+        [
+          4057,
+          21,
+          1,
+          1
+        ],
+        [
+          4116,
+          16,
+          1,
+          1
+        ],
+        [
+          4175,
+          11,
+          1,
+          1
+        ],
+        [
+          4234,
+          6,
+          0,
+          0
+        ],
+        [
+          4293,
+          1,
+          1,
+          1
+        ],
+        [
+          4352,
+          28,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "id": 11,
+      "bits": "10001000101010100100000101001000",
+      "queries": 71,
+      "correct": 71,
+      "positives": 43,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 12,
+      "bits": "00101000101100101000011110000110",
+      "queries": 71,
+      "correct": 71,
+      "positives": 47,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 13,
+      "bits": "00100010000000011001011010001000",
+      "queries": 71,
+      "correct": 71,
+      "positives": 37,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 14,
+      "bits": "10000110110100010100001010000000",
+      "queries": 71,
+      "correct": 71,
+      "positives": 40,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 15,
+      "bits": "01001100111000000010101100010011",
+      "queries": 71,
+      "correct": 71,
+      "positives": 45,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 16,
+      "bits": "00100110010110010000100101011000",
+      "queries": 71,
+      "correct": 71,
+      "positives": 47,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 17,
+      "bits": "00101000000010001111000000100010",
+      "queries": 71,
+      "correct": 71,
+      "positives": 34,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 18,
+      "bits": "01100000111101010000010010010000",
+      "queries": 71,
+      "correct": 71,
+      "positives": 40,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 19,
+      "bits": "01010100000110000000000101100000",
+      "queries": 71,
+      "correct": 71,
+      "positives": 31,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 20,
+      "bits": "00000010011100010110111010000100",
+      "queries": 71,
+      "correct": 71,
+      "positives": 43,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 21,
+      "bits": "01011001101100110000000110111000",
+      "queries": 71,
+      "correct": 71,
+      "positives": 47,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 22,
+      "bits": "10000000000001110100000100001001",
+      "queries": 71,
+      "correct": 71,
+      "positives": 28,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 23,
+      "bits": "00000011001100011101000001000000",
+      "queries": 71,
+      "correct": 71,
+      "positives": 31,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 24,
+      "bits": "10001110110111000000011101100000",
+      "queries": 71,
+      "correct": 71,
+      "positives": 44,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 25,
+      "bits": "10000010001110110000001010100011",
+      "queries": 71,
+      "correct": 71,
+      "positives": 42,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    },
+    {
+      "id": 26,
+      "bits": "10000001100011100110000000010001",
+      "queries": 71,
+      "correct": 71,
+      "positives": 34,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "unsolicited": 0,
+      "stable": true
+    }
+  ]
+}
