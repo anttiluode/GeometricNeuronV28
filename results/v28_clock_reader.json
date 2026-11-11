@@ -1,5 +1,5 @@
 {
-  "protocol": "Native nine? No: 10 original loop units, eight ring relays, one reader relay, one autonomous 59-tick clock.",
+  "protocol": "Ten original Perception Lab loops: eight silent ring relays, one silent reader relay, and one autonomous 59-tick clock.",
   "method": "Same unchanged V27 core; ring 8 units c=1.6 edges w=-6 L=0; reader c=1.6 with ring->reader w=-2 and clock->reader w=-4; clock c=1.0; no external query during observation.",
   "observation": "From tick 180 to <4400 of a 4500-tick run after 1500-tick settlement, each leading edge of a two-tick clock event predicts whether ring unit zero beats in either of those two ticks; reader observed at +4 or +5 ticks.",
   "patterns": "One empty, six single-bit, twenty PRNG-generated ~32%-occupied 32-bit sequences, deterministic xorshift32 initial 2463534242.",
